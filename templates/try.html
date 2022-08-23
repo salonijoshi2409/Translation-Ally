@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Translation Ally</title>
+      <link rel="stylesheet" href="{% static 'CSS/home.css' %}">
+   </head>
+   <body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="src">Choose your source language:</label>
+        <select name="src">     
+        {% for key, value in lang.items %}
+           <option value="{{key}}">{{value}}</option>
+        {% endfor %}
+        </select>
+        <label for="dest">Choose your destination language:</label>
+        <select name="dest">     
+        {% for key, value in lang.items %}
+           <option value="{{key}}">{{value}}</option>
+        {% endfor %}
+        </select>
+        <br>
+        <input type="file" class="btn btn-outline-info" name="myfile" required>
+        <button type="submit" class="btn btn-info">Upload</button>
+      </form>
+    </body>
+</html>  
