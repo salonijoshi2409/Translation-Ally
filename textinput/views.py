@@ -39,6 +39,7 @@ import sys
 import mimetypes
 import convertapi
 #from pdf2docx import Converter
+from django.contrib import messages
 
 from docx import Document
 from docx.document import Document as _Document
@@ -345,7 +346,9 @@ def home(request):
         #fs = FileSystemStorage()
         #filename = fs.save(myfile.name, myfile)
         # 
-    return render(request,'home.html', {'lang': lang})
+        truecheck = True
+        #messages.success(request, 'File is ready')
+    return render(request,'home.html', {'lang': lang, 'truecheck': truecheck })
 
 # def error_404(request, exception):
 #     return render(request, '404.html')
@@ -413,7 +416,7 @@ def iter_block_items(parent):
 def downloadfile(request):
     global x
     if x=="temp":
-        #messages.info(request, 'File not uploaded. Please upload the file')
+        messages.add_message(request, messages.INFO, 'File not uploaded. Please upload file')
         return HttpResponseRedirect('/')
     else:
         #print(x,"helloo")
